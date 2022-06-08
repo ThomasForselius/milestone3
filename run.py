@@ -1,3 +1,5 @@
+from ntpath import join
+from posixpath import split
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -14,18 +16,50 @@ SHEET = GSPREAD_CLIENT.open('players')
 
 players_sheet = SHEET.worksheet('players')
 #defining variable players_sheet to fetch data from players sheet
-admin_sheet = SHEET.worksheet('admin')
+admin_sheet = SHEET.worksheet('admins')
 #defining variable players_sheet to fetch data from admins sheet
 
 players = players_sheet.get_all_values() #gets all values from players sheet
 admins = admin_sheet.get_all_values() #gets all values from admin sheet
-print(players)
-print(admins)
+#print(players)
+#print(admins)
+
+
+def main_menu():
+    """
+    Shows the main menu in the program:
+        1. Create player
+        2. Delete Player
+        3. Update Player
+        4. Show Player List
+        5. Show Admin List
+    """
 
 def show_players(type):
     """
     Gets players or admins from sheet
     """
+    
+    data = SHEET.worksheet(type).get_all_values()[1:]
+    i = 1
+    for x in data:
+        name = f"Player {i}: {x[0]} {x[1]}"
+        print(name)
+        i+=1
+
+
+    #names = []
+    #for x in range(0,2):
+    #    names.append(data[x])
+    #name_string = ' '.join(names)
+    #print(name_string)
+
+"""
+    list_col = SHEET.worksheet(type).col_values(1)
+    for i in range(1,len(list_col)):
+        print(f"{i}: {list_col[i]}")
+"""        
+
 
 def validate_data(type, data):
     """
@@ -33,6 +67,8 @@ def validate_data(type, data):
     Numbers ar checked for int type
     Strings are checked for str type
     """
+    #if type == "text"
+    #print("Enter")
 
 
 def new_player():
@@ -72,4 +108,5 @@ def main():
     new_player()
 
 
-main()
+#main()
+show_players("players")
