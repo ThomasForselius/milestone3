@@ -1,5 +1,6 @@
 from ntpath import join
 from posixpath import split
+from turtle import clear
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -16,11 +17,11 @@ SHEET = GSPREAD_CLIENT.open('players')
 
 players_sheet = SHEET.worksheet('players')
 #defining variable players_sheet to fetch data from players sheet
-admin_sheet = SHEET.worksheet('admins')
+admins_sheet = SHEET.worksheet('admins')
 #defining variable players_sheet to fetch data from admins sheet
 
 players = players_sheet.get_all_values() #gets all values from players sheet
-admins = admin_sheet.get_all_values() #gets all values from admin sheet
+admins = admins_sheet.get_all_values() #gets all values from admin sheet
 #print(players)
 #print(admins)
 
@@ -33,20 +34,51 @@ def main_menu():
         3. Update Player
         4. Show Player List
         5. Show Admin List
+        6. Exit program
     """
+    while True:
+        
+        print(f"\\\ *** Main menu *** ///\n")
+
+        print(f"1: Create new Player")
+        print(f"2: Delete player")
+        print(f"3: Update Player Score")
+        print(f"4: Show Player list")
+        print(f"5: Show Admin List")
+        print(f"6: Exit program")
+        print("\n")
+        menu_num = int(input("Enter a number below: \n"))
+        if menu_num == 1:
+            new_player()
+        elif menu_num == 4: 
+            show_players('players')
+        elif menu_num == 5:
+            show_players('admins')
+        elif menu_num == 6: 
+            return False
+        else: 
+            return True
+
+
+
 
 def show_players(type):
     """
     Gets players or admins from sheet
     """
-    
+    print(f"\n*** Getting {type} from worksheet... ***\n")
     data = SHEET.worksheet(type).get_all_values()[1:]
     i = 1
     for x in data:
-        name = f"Player {i}: {x[0]} {x[1]}"
+        name = f"Player {i}: \t{x[0]} {x[1]}"
         print(name)
+        if type == "players": 
+            points = f"Score: {x[4]} pts"
+            print(f"\t\tPoints: {points}")
+            print(f"\t\t---------------------")
         i+=1
-
+    print(f"\n *** End of player list *** \n")
+    return True
 
     #names = []
     #for x in range(0,2):
@@ -60,6 +92,22 @@ def show_players(type):
         print(f"{i}: {list_col[i]}")
 """        
 
+def update_score(player, score):
+    """
+    Updates score for a certain player
+    """
+
+    data = SHEET.worksheet(type).get_all_values()[1:]
+    i = 1
+    for x in data:
+        points = {x[4]}
+        name = f"Player {i}: {x[0]} {x[1]} \nPoints: {points}\n"
+        print(name)
+        i+=1
+        print("*** Updating points for " + name + "***\n")
+        if SHEET.worksheet(type).update(f'E{i}', 3):
+            print("*** Points updated successfully! ***\n")
+
 
 def validate_data(type, data):
     """
@@ -67,18 +115,15 @@ def validate_data(type, data):
     Numbers ar checked for int type
     Strings are checked for str type
     """
-    #if type == "text"
-    #print("Enter")
-
 
 def new_player():
     """
     Creates a new instance of regular player
     """
-    print("***** Create a player *****")
-    print("You must enter information about the player you wish to create.\n")
-    print("These are the required credentials: ")
-    print("Admin or Regular player, First name, Last name, Age and Email.\n")
+    print(f"\n***** Create a player *****")
+    print(f"You must enter information about the player you wish to create.\n")
+    print(f"These are the required credentials: ")
+    print(f"Admin or Regular player, First name, Last name, Age and Email.\n")
 
     type = input("Admin or regular player?\n")
     f_name = input("First name: \n")
@@ -91,6 +136,7 @@ def new_player():
 
     print("\n***** The following information was entered: *****")
     print("\n")
+    print(f"Type: {type}")
     print(f"First name: {f_name}")
     print(f"Last name: {l_name}")
     print(f"Age: {age}")
@@ -98,15 +144,16 @@ def new_player():
     print(f"\n")
     player_data = [f_name, l_name, age, email]
     print("Adding player to list...\n")
-    players_sheet.append_row(player_data)
-    print("Player added to list!")
-
-
+    if type == "players" or type == "Players" or type == "player" or type == "Player": 
+        player_data = [f_name, l_name, age, email, 0]
+        players_sheet.append_row(player_data)
+    elif type == "Admin" or type == "admin" or type == "Admins" or type == "admins":
+        admins_sheet.append_row(player_data)
+    print(f"Player added to {type} list!\n\n")
 
 def main():
-    print("*** Welcome to player database control center ***\n\n")
-    new_player()
+    print(f"\n\n*** Welcome to player database control center ***\n\n")
+    main_menu()
 
 
-#main()
-show_players("players")
+main()
