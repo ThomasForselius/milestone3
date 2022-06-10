@@ -122,17 +122,39 @@ def new_player():
     print(f"- Admin or Regular player\n- First name\n- Last name\n- Age\n- Email\n")
 
     type = ""
+    type_alt = ["admin", "Admin", "player", "Player"]
     type_check = False
     while type_check == False:
+        type = input("* Admin or player?\n")
+        has = type in type_alt
+        if has:
+            type_check = True
+
+    f_name = "" 
+    f_name_check = False
+    while f_name_check == False:
         try:
-            type = input("* Admin or player?\n")
-            if "admin" in type or len(type) < 5:
-                type_check = True
-        except ValueError:
-            print("Wrong type, must be Admin/admin or Player/player. Try again")
-        
-        f_name = input("* First name: \n").capitalize
-        l_name = input("* Last name: \n").capitalize
+            f_name = input("* First name: \n")
+            if len(f_name) > 2:
+                f_name_check = True
+            else: 
+                print("Name too short, try again.")
+                f_name_check = False
+        except ValueError as e:
+                print(f"Something went wrong: {e}\n")
+
+    l_name = ""
+    l_name_check = False
+    while l_name_check == False:
+        try:
+            l_name = input("* Last name: \n")
+            if len(l_name) > 2:
+                l_name_check = True
+            else:
+                print("Last name too short, try again")
+                l_name_check == False
+        except ValueError as e:
+                print(f"Something went wrong: {e}\n")
 
     age_check = False
     while age_check == False:
@@ -146,29 +168,35 @@ def new_player():
     while email_check == False:
         try: 
             email = input("* Email: \n")
-            if email.contains("@"):
+            if "@" in email:
                 email_check = True
+            else:
+                print("Email must contain @")
+                email_check = False
+
         except ValueError:
             print(f"Incorrect email, try again.")
             print("Email must contain @")
 
+    first_name = f_name.capitalize()
+    last_name = l_name.capitalize()
     print("\n***** The following information was entered: *****")
     print("\n")
     print(f"Type: {type}")
-    print(f"First name: {f_name}")
-    print(f"Last name: {l_name}")
+    print(f"First name: {first_name}")
+    print(f"Last name: {last_name}")
     print(f"Age: {age}")
     print(f"Email: {email}")
     print(f"\n")
-    player_data = [f_name, l_name, age, email]
+    player_data = [first_name, last_name, age, email]
     print("Adding player to list...\n")
     if type == "players" or type == "Players" or type == "player" or type == "Player": 
-        player_data = [f_name, l_name, age, email, 0]
+        player_data = player_data.append(0)
         players_sheet.append_row(player_data)
-        print(f"{f_name} {l_name} added to {type} list!\n\n")  
+        print(f"{first_name} {last_name} added to {type} list!\n\n")  
     elif type == "Admin" or type == "admin" or type == "Admins" or type == "admins":
         admins_sheet.append_row(player_data)
-        print(f"{f_name} {l_name} added to {type} list!\n\n")  
+        print(f"{first_name} {last_name} added to {type} list!\n\n")  
     else:
         print("Something went wrong, please try again.\n")
         new_player()
