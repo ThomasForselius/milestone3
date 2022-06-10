@@ -36,9 +36,7 @@ def main_menu():
         6. Exit program
     """
     while True:
-        
         print(f"\t --- Main menu --- \n")
-
         print(f"\t1: Create new Player")
         print(f"\t2: Delete player")
         print(f"\t3: Update Player Score")
@@ -96,7 +94,7 @@ def update_score(type):
         try:
             choice = int(player_choice) + 1
             score = players_sheet.row_values(choice)[4] #gets the score for the chosen player
-            print(score)
+            print(f"Current score: {score}")
             first_name = players_sheet.row_values(choice)[0] # get the players' first name
             last_name = players_sheet.row_values(choice)[1] # gets the players' last name
             print(f"You chose player: {first_name} {last_name}\n")
@@ -145,7 +143,8 @@ def new_player():
 
     l_name = ""
     l_name_check = False
-    while l_name_check == False:
+    while l_name_check == False: 
+        #requests input until the correct input is given
         try:
             l_name = input("* Last name: \n")
             if len(l_name) > 2:
@@ -157,7 +156,8 @@ def new_player():
                 print(f"Something went wrong: {e}\n")
 
     age_check = False
-    while age_check == False:
+    while age_check == False: 
+        #requests input until the correct input is given
         try:
             age = int(input("* Age: \n"))
             age_check = True
@@ -165,7 +165,8 @@ def new_player():
             print("Wrong value, try again")
     
     email_check = False
-    while email_check == False:
+    while email_check == False: 
+        #requests input until the correct input is given
         try: 
             email = input("* Email: \n")
             if "@" in email:
@@ -209,7 +210,6 @@ def delete_player(type):
     player_count = players_sheet.row_count - 1
     if player_count > 0:
         show_players(type)
-        
         try:
             choice = int(input("Enter a number for the player you wish to delete:\n"))
         except ValueError:
