@@ -61,7 +61,7 @@ def main_menu():
         elif menu_num == 5:
             show_players('admins') # shows admins 
         elif menu_num == 6: 
-            return False
+            exit()
         elif menu_num > 6: 
             print("\nNot a number between 1 and 6, try again.")
         
@@ -88,28 +88,38 @@ def update_score(type):
     """
     Updates score for a certain player
     """
-    show_players(type)
-    while True:
-        player_choice = input(f"Choose a player number from the list: (enter number for corresponding player:\n") 
+    show_players(type)    
+    player_check = True
+    while player_check == True:
         try:
-            choice = int(player_choice) + 1
-            score = players_sheet.row_values(choice)[4] #gets the score for the chosen player
-            print(f"Current score: {score}")
-            first_name = players_sheet.row_values(choice)[0] # get the players' first name
-            last_name = players_sheet.row_values(choice)[1] # gets the players' last name
-            print(f"You chose player: {first_name} {last_name}\n")
-            menu_input_score = input("Enter new score:\n")
-            print(f"*** Updating points for {first_name} {last_name} ***\n")
-            try:
-                players_sheet.update(f'E{choice}', menu_input_score)
-                print("*** Points updated successfully! ***\n")
-                return False
-            except ValueError:
-                print("Wrong choice; try again")
-
+            player_choice = int(input(f"Choose a player number from the list: (enter number for corresponding player:\n"))
+            player_count = players_sheet.row_count -1
+            if player_choice == 0:
+                player_check = False
+            elif player_choice > player_count or player_choice < player_count:
+                print("You must choose a player from list, try again")
+            elif player_choice <= 1 or player_choice >= player_count:
+                choice = player_choice + 1
+                score = players_sheet.row_values(choice)[4] #gets the score for the chosen player
+                print(f"Current score: {score}")
+                first_name = players_sheet.row_values(choice)[0] # get the players' first name
+                last_name = players_sheet.row_values(choice)[1] # gets the players' last name
+                print(f"You chose player: {first_name} {last_name}\n")
+                score_check = False
+                while score_check == False:
+                    try:
+                        menu_input_score = int(input("Enter new score:\n"))
+                        print(f"*** Updating points for {first_name} {last_name} ***\n")
+                        players_sheet.update(f'E{choice}', menu_input_score)
+                        print("*** Points updated successfully! ***\n")
+                        score_check = True
+                    except ValueError:
+                        print("Mut be a number, try again ")
+                break
         except ValueError:
-            print("You must enter a valid choice ")
-
+            print(f"Only numbers are allowed, try again.\n")
+        
+            
 def new_player():
     """
     Creates a new instance of regular player
@@ -207,19 +217,31 @@ def delete_player(type):
     Deletes player based on choice from player list
     If there are no players, user is reverted back to main menu
     """
+    show_players('players')
     player_count = players_sheet.row_count - 1
-    if player_count > 0:
-        show_players(type)
+    print(player_count)
+    del_player = False
+    print("* Note: To go back to main menu, enter 0 and press enter *\n")
+    while del_player == False:
         try:
             choice = int(input("Enter a number for the player you wish to delete:\n"))
+            if choice == 0:
+                main()
+            elif choice < 1:
+                print("Negative numbers are not allowed. Try again")
+            elif choice > player_count:
+                print("The number you gave is larger than the number of players.\nTry again. ")
+                del_player = False
+            else:
+                del_player = True
         except ValueError:
             print("Not a valid choice, try again")
-        print("Deleting selected player...")
-        choice += 1
-        SHEET.worksheet('players').delete_rows(choice)
-        print(f"Successfully deleted player from game!\n")
-    else:
-        print("No players to delete. Add player first!\n\n")
+
+    print(f"*** Deleting selected player... ***\n")
+    choice += 1
+    SHEET.worksheet('players').delete_rows(choice)
+    print(f"Successfully deleted player from game!\n")
+        
 
 def main():
     print(f"\n\n*** Welcome to player database control center ***\n\n")
