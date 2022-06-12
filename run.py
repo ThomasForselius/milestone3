@@ -1,6 +1,7 @@
 from ntpath import join
 from posixpath import split
-from turtle import clear
+#from urllib.parse import _ParseResultBytesBase
+#from turtle import clear
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -64,7 +65,17 @@ def main_menu():
             exit()
         elif menu_num > 6: 
             print("\nNot a number between 1 and 6, try again.")
-        
+        elif menu_num == 0:
+            players_sheet.append_row(['test','test',35,'mail@mail',0])
+
+def count_players(type):
+    """
+    Counts the number of players in a certain sheet
+    """
+    num = SHEET.worksheet(type).row_count -1
+    print(f"Number of players: {num}")
+    return num
+
 def show_players(type):
     """
     Gets players or admins from sheet
@@ -72,6 +83,11 @@ def show_players(type):
     print(f"\n*** Getting {type} from worksheet... ***\n")
     data = SHEET.worksheet(type).get_all_values()[1:]
     i = 1
+    players_num = count_players('players')
+    print(f"players: {players_num}")
+    if players_num < 1:
+        print("No players to display, add one first.\n\n")
+        return False
     for x in data:
         name = f"{i}: \t{x[0]} {x[1]}"
         print(name)
@@ -98,6 +114,7 @@ def update_score(type):
                 player_check = False
             elif player_choice > player_count or player_choice < player_count:
                 print("You must choose a player from list, try again")
+                player_check = True
             elif player_choice <= 1 or player_choice >= player_count:
                 choice = player_choice + 1
                 score = players_sheet.row_values(choice)[4] #gets the score for the chosen player
@@ -218,8 +235,7 @@ def delete_player(type):
     If there are no players, user is reverted back to main menu
     """
     show_players('players')
-    player_count = players_sheet.row_count - 1
-    print(player_count)
+    player_count = count_players('players')
     del_player = False
     print("* Note: To go back to main menu, enter 0 and press enter *\n")
     while del_player == False:
