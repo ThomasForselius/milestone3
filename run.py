@@ -54,7 +54,7 @@ def main_menu():
         if menu_num == 1:
             new_player()
         elif menu_num == 2: 
-            delete_player('players')
+            delete_player('players') #only players are deletable, not admins
         elif menu_num == 3: 
             update_score("players") # only players have scores, therefor the value is "players"
         elif menu_num == 4: 
@@ -65,8 +65,6 @@ def main_menu():
             exit()
         elif menu_num > 6: 
             print("\nNot a number between 1 and 6, try again.")
-        elif menu_num == 0:
-            players_sheet.append_row(['test','test',35,'mail@mail',0])
 
 def count_players(type):
     """
@@ -92,11 +90,9 @@ def show_players(type):
         if type == "players": 
             points = f"Score: {x[4]} pts"
             print(f"\tPoints: " + points)
-            #print(f"\t\t---------------------")
         i+=1
         print(f"\t---------------------")
     print(f"\n*** End of player list *** \n")
-    #return True
 
 def update_score(type):
     """
@@ -137,7 +133,6 @@ def update_score(type):
         except ValueError:
             print(f"Only numbers are allowed, try again.\n")
         
-            
 def new_player():
     """
     Creates a new instance of regular player
@@ -146,7 +141,6 @@ def new_player():
     print(f"You must enter information about the player you wish to create.\n")
     print(f"These are the required credentials: \n")
     print(f"- Admin or Regular player\n- First name\n- Last name\n- Age\n- Email\n")
-
     type = ""
     type_alt = ["admin", "Admin", "player", "Player"]
     type_check = False
@@ -155,7 +149,6 @@ def new_player():
         has = type in type_alt
         if has:
             type_check = True
-
     f_name = "" 
     f_name_check = False
     while f_name_check == False:
@@ -168,7 +161,6 @@ def new_player():
                 f_name_check = False
         except ValueError as e:
                 print(f"Something went wrong: {e}\n")
-
     l_name = ""
     l_name_check = False
     while l_name_check == False: 
@@ -182,7 +174,6 @@ def new_player():
                 l_name_check == False
         except ValueError as e:
                 print(f"Something went wrong: {e}\n")
-
     age_check = False
     while age_check == False: 
         #requests input until the correct input is given
@@ -191,7 +182,6 @@ def new_player():
             age_check = True
         except ValueError: 
             print("Wrong value, try again")
-    
     email_check = False
     while email_check == False: 
         #requests input until the correct input is given
@@ -202,11 +192,9 @@ def new_player():
             else:
                 print("Email must contain @")
                 email_check = False
-
         except ValueError:
             print(f"Incorrect email, try again.")
             print("Email must contain @")
-
     first_name = f_name.capitalize()
     last_name = l_name.capitalize()
     print("\n***** The following information was entered: *****")
@@ -259,10 +247,8 @@ def delete_player(type):
     SHEET.worksheet('players').delete_rows(choice)
     print(f"Successfully deleted player from game!\n")
         
-
 def main():
     print(f"\n\n*** Welcome to player database control center ***\n\n")
     main_menu()
-
 
 main()
