@@ -212,7 +212,8 @@ def new_player():
     player_data=[first_name, last_name, age, email]
     print("Adding player to list...\n")
     if type in type_list_player:
-        #player_data=player_data.append(0)
+        score_int=0
+        player_data.append(score_int)
         players_sheet.append_row(player_data)
         print(f"{first_name} {last_name} added to {type} list!\n\n")
     elif type in type_list_admin:
