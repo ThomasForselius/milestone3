@@ -1,7 +1,5 @@
 from ntpath import join
 from posixpath import split
-#from urllib.parse import _ParseResultBytesBase
-#from turtle import clear
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -23,8 +21,6 @@ admins_sheet = SHEET.worksheet('admins')
 
 players = players_sheet.get_all_values() #gets all values from players sheet
 admins = admins_sheet.get_all_values() #gets all values from admin sheet
-#print(players)
-#print(admins)
 
 def main_menu():
     """
