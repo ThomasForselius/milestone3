@@ -70,10 +70,9 @@ def main_menu():
 
 def count_players(type):
     """
-    Counts the number of players in a certain sheet
+    Counts the number of players in a certain sheet and returns the value -1
     """
     num = SHEET.worksheet(type).row_count -1
-    print(f"Number of players: {num}")
     return num
 
 def show_players(type):
@@ -84,7 +83,6 @@ def show_players(type):
     data = SHEET.worksheet(type).get_all_values()[1:]
     i = 1
     players_num = count_players('players')
-    print(f"players: {players_num}")
     if players_num < 1:
         print("No players to display, add one first.\n\n")
         return False
@@ -109,13 +107,16 @@ def update_score(type):
     while player_check == True:
         try:
             player_choice = int(input(f"Choose a player number from the list: (enter number for corresponding player:\n"))
-            player_count = players_sheet.row_count -1
+            player_count = count_players('players')
+            print(player_count)
             if player_choice == 0:
                 player_check = False
-            elif player_choice > player_count or player_choice < player_count:
+            elif player_choice > player_count > player_choice:
                 print("You must choose a player from list, try again")
+                print(f"Choice: {player_choice}")
+                print(player_count)
                 player_check = True
-            elif player_choice <= 1 or player_choice >= player_count:
+            elif 1 <= player_choice <= player_count:
                 choice = player_choice + 1
                 score = players_sheet.row_values(choice)[4] #gets the score for the chosen player
                 print(f"Current score: {score}")
