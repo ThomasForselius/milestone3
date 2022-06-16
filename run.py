@@ -148,13 +148,15 @@ def new_player():
     print(f"- Age")
     print(f"- Email\n")
     type = ""
-    type_alt = ["admin", "Admin", "player", "Player"]
-    type_list_admin = ["Admin", "admin", "Admins", "admins"]
-    type_list_player = ["Player", "player", "Players", "players"]
+    type_alt = ["admin", "player"]
+    type_list_admin = ["admins"]
+    type_list_player = ["players"]
     type_check = False
     while type_check is False:
-        type = input("* Admin or player?\n")
-        has = type in type_alt
+        type = input("* Admin or Player?\n")
+        type_lower = str(type).lower()
+        has = type_lower in type_alt
+        print(type_lower)
         if has:
             type_check = True
     f_name = ""
@@ -204,7 +206,7 @@ def new_player():
     last_name = l_name.capitalize()
     print("\n***** The following information was entered: *****")
     print("\n")
-    print(f"Type: {type}")
+    print(f"Type: {type_lower}")
     print(f"First name: {first_name}")
     print(f"Last name: {last_name}")
     print(f"Age: {age}")
@@ -212,14 +214,14 @@ def new_player():
     print(f"\n")
     player_data = [first_name, last_name, age, email]
     print("Adding player to list...\n")
-    if type in type_list_player:
+    if type_lower is "player":
         score_int = 0
         player_data.append(score_int)
         players_sheet.append_row(player_data)
-        print(f"{first_name} {last_name} added to {type} list!\n\n")
-    elif type in type_list_admin:
+        print(f"{first_name} {last_name} added to {type_lower} list!\n\n")
+    elif type_lower is "admin":
         admins_sheet.append_row(player_data)
-        print(f"{first_name} {last_name} added to {type} list!\n\n")
+        print(f"{first_name} {last_name} added to {type_lower} list!\n\n")
     else:
         print("Something went wrong, please try again.\n")
         new_player()
@@ -259,4 +261,5 @@ def main():
     print(f"\n\n*** Welcome to player database control center ***\n\n")
     main_menu()
 
-main()
+if __name__ == "__main__":
+    main()
