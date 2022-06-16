@@ -1,3 +1,5 @@
+
+from tabulate import tabulate
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -80,15 +82,20 @@ def show_players(type):
     if players_num < 1:
         print("No players to display, add one first.\n\n")
         return False
+    player_list = []
     for x in data:
-        name = f"{i}: \t{x[0]} {x[1]}"
-        print(name)
+        name = [i,x[0],x[1]]
+        player_list.append(name)
         if type == "players":
-            points = f"Score: {x[4]} pts"
-            print(f"\tPoints: " + points)
+            name.append(x[4])
         i += 1
-        print(f"\t---------------------")
-    print(f"\n*** End of player list *** \n")
+    if type == "players":
+        print(tabulate(player_list, headers=["Num:","First Name","Last Name","Score"],  tablefmt="github"))
+        print(f"\n")
+    else:
+        print(tabulate(player_list, headers=["Num:","First Name","Last Name"], tablefmt="github"))
+        print(f"\n")
+    #print(f"\n*** End of player list *** \n")
 
 
 def update_score(type):
