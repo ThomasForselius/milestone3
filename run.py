@@ -214,12 +214,12 @@ def new_player():
     print(f"\n")
     player_data = [first_name, last_name, age, email]
     print("Adding player to list...\n")
-    if type_lower is "player":
+    if type_lower == "player":
         score_int = 0
         player_data.append(score_int)
         players_sheet.append_row(player_data)
         print(f"{first_name} {last_name} added to {type_lower} list!\n\n")
-    elif type_lower is "admin":
+    elif type_lower == "admin":
         admins_sheet.append_row(player_data)
         print(f"{first_name} {last_name} added to {type_lower} list!\n\n")
     else:
