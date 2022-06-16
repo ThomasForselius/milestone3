@@ -101,32 +101,33 @@ def update_score(type):
     player_check = True
     while player_check is True:
         try:
-            player_choice = int(input(f"Choose a player number from the list:"))
+            player_choice = int(input(f"Choose a player number:"))
             print("Enter number for corresponding player:\n")
-            player_count=count_players('players')
+            player_count = count_players('players')
             print(player_count)
             if player_choice == 0:
-                player_check=False
+                player_check = False
             elif player_choice > player_count > player_choice:
                 print("You must choose a player from list, try again")
                 print(f"Choice: {player_choice}")
                 print(player_count)
-                player_check=True
+                player_check = True
             elif 1 <= player_choice <= player_count:
-                choice=player_choice+1
-                score=players_sheet.row_values(choice)[4]
+                choice = player_choice+1
+                score = players_sheet.row_values(choice)[4]
                 print(f"Current score: {score}")
-                first_name=players_sheet.row_values(choice)[0]
-                last_name=players_sheet.row_values(choice)[1]
+                first_name = players_sheet.row_values(choice)[0]
+                last_name = players_sheet.row_values(choice)[1]
                 print(f"You chose player: {first_name} {last_name}\n")
-                score_check=False
+                score_check = False
                 while score_check is False:
                     try:
-                        menu_input_score=int(input("Enter new score:\n"))
-                        print(f"*** Updating points for: {first_name} {last_name} ***\n")
+                        menu_input_score = int(input("Enter new score:\n"))
+                        print(f"*** Updating points for: ***")
+                        print(f"{first_name} {last_name}\n")
                         players_sheet.update(f'E{choice}', menu_input_score)
                         print("*** Points updated successfully! ***\n")
-                        score_check=True
+                        score_check = True
                     except ValueError:
                         print("Mut be a number, try again ")
                 break
@@ -146,61 +147,61 @@ def new_player():
     print(f"- Last name")
     print(f"- Age")
     print(f"- Email\n")
-    type=""
-    type_alt=["admin", "Admin", "player", "Player"]
+    type = ""
+    type_alt = ["admin", "Admin", "player", "Player"]
     type_list_admin = ["Admin", "admin", "Admins", "admins"]
     type_list_player = ["Player", "player", "Players", "players"]
-    type_check=False
+    type_check = False
     while type_check is False:
-        type=input("* Admin or player?\n")
-        has=type in type_alt
+        type = input("* Admin or player?\n")
+        has = type in type_alt
         if has:
-            type_check=True
-    f_name=""
-    f_name_check=False
+            type_check = True
+    f_name = ""
+    f_name_check = False
     while f_name_check is False:
         try:
-            f_name=input("* First name: \n")
+            f_name = input("* First name: \n")
             if len(f_name) > 2:
-                f_name_check=True
+                f_name_check = True
             else:
                 print("Name too short, try again.")
-                f_name_check=False
+                f_name_check = False
         except ValueError as e:
                 print(f"Something went wrong: {e}\n")
-    l_name=""
-    l_name_check=False
+    l_name = ""
+    l_name_check = False
     while l_name_check is False:
         try:
-            l_name=input("* Last name: \n")
+            l_name = input("* Last name: \n")
             if len(l_name) > 2:
-                l_name_check=True
+                l_name_check = True
             else:
                 print("Last name too short, try again")
-                l_name_check=False
+                l_name_check = False
         except ValueError as e:
                 print(f"Something went wrong: {e}\n")
-    age_check=False
+    age_check = False
     while age_check is False:
         try:
-            age=int(input("* Age: \n"))
-            age_check=True
+            age = int(input("* Age: \n"))
+            age_check = True
         except ValueError:
             print("Wrong value, try again")
-    email_check=False
+    email_check = False
     while email_check is False:
         try:
-            email=input("* Email: \n")
+            email = input("* Email: \n")
             if "@" in email:
-                email_check=True
+                email_check = True
             else:
                 print("Email must contain @")
-                email_check=False
+                email_check = False
         except ValueError:
             print(f"Incorrect email, try again.")
             print("Email must contain @")
-    first_name=f_name.capitalize()
-    last_name=l_name.capitalize()
+    first_name = f_name.capitalize()
+    last_name = l_name.capitalize()
     print("\n***** The following information was entered: *****")
     print("\n")
     print(f"Type: {type}")
@@ -209,19 +210,20 @@ def new_player():
     print(f"Age: {age}")
     print(f"Email: {email}")
     print(f"\n")
-    player_data=[first_name, last_name, age, email]
+    player_data = [first_name, last_name, age, email]
     print("Adding player to list...\n")
     if type in type_list_player:
-        score_int=0
+        score_int = 0
         player_data.append(score_int)
         players_sheet.append_row(player_data)
         print(f"{first_name} {last_name} added to {type} list!\n\n")
     elif type in type_list_admin:
         admins_sheet.append_row(player_data)
-        print(f"{first_name} {last_name} added to {type} list!\n\n")  
+        print(f"{first_name} {last_name} added to {type} list!\n\n")
     else:
         print("Something went wrong, please try again.\n")
         new_player()
+
 
 def delete_player(type):
     """
@@ -229,21 +231,21 @@ def delete_player(type):
     If there are no players, user is reverted back to main menu
     """
     show_players('players')
-    player_count=count_players('players')
-    del_player=False
+    player_count = count_players('players')
+    del_player = False
     print("* Note: To go back to main menu, enter 0 and press enter *\n")
     while del_player is False:
         try:
-            choice=int(input("Enter a number for the player you wish to delete:\n"))
+            choice = int(input("Enter number for the player you wish to delete:\n"))
             if choice == 0:
                 main()
             elif choice < 1:
                 print("Negative numbers are not allowed. Try again")
             elif choice > player_count:
-                print("The number you gave is larger than the number of players.\nTry again. ")
-                del_player=False
+                print("Input is larger than number of players.\nTry again. ")
+                del_player = False
             else:
-                del_player=True
+                del_player = True
         except ValueError:
             print("Not a valid choice, try again")
 
@@ -251,6 +253,7 @@ def delete_player(type):
     choice += 1
     SHEET.worksheet('players').delete_rows(choice)
     print(f"Successfully deleted player from game!\n")
+
 
 def main():
     print(f"\n\n*** Welcome to player database control center ***\n\n")
