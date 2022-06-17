@@ -161,7 +161,7 @@ def new_player():
     type_alt = ["admin", "player"]
     type_check = False
     while type_check is False:
-        print(Fore.CYAN + "* Admin or Player? *  \033[39m")
+        print(Fore.CYAN + "* Admin or Player? *")
         type = input()
         type_lower = str(type).lower()
         has = type_lower in type_alt
@@ -171,7 +171,7 @@ def new_player():
     f_name_check = False
     while f_name_check is False:
         try:
-            print(Fore.CYAN + "First name: \033[39m")
+            print(Fore.CYAN + "First name:")
             f_name = input()
             if len(f_name) > 2:
                 f_name_check = True
