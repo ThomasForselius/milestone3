@@ -1,4 +1,4 @@
-![FriendFeud Backend admin](diagram.png)
+![FriendFeud Backend admin](img/diagram.png)
 
 ## FriendControl - project documentation
 
@@ -15,6 +15,10 @@ an original web project from Thomas Forselius, studying font-end webdevelopement
 
 ## What is it?
 
+![Layout](img/start.png)
+
 FriendControl is the first version of the backend player management for my upcoming real world game FriendFeud.
 It's a simple python script to crud (create, read, update, delete) players and admins for the game. 
+
+# User Story
 
