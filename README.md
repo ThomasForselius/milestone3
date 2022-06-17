@@ -1,31 +1,20 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+![FriendFeud Backend admin](diagram.png)
 
-Welcome USER_NAME,
+## FriendControl - project documentation
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+This is the README.md descriptive file of the project FriendControl;
+an original web project from Thomas Forselius, studying font-end webdevelopement at CodeInstitute. 
 
-## Reminders
+## Table of Contents
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+> 1. [What is FriendControl?](#what-is-it)
+ >- [User story](#user-story) 
+> 2. [UI & UX](#ux)
+> 3. [Navigation](#navigation)
+> 4. [Pages](#pages)
 
-## Creating the Heroku app
+## What is it?
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+FriendControl is the first version of the backend player management for my upcoming real world game FriendFeud.
+It's a simple python script to crud (create, read, update, delete) players and admins for the game. 
 
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
