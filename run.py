@@ -270,7 +270,7 @@ def delete_player(type):
 
 
 def main():
-    print(Back.BLUE + f"\n\n*** Welcome to player database control center ***\n" + Style.RESET_ALL + "\n")
+    print(Back.BLUE + f"\n\n*** Welcome to FriendControl - database admin system ***\n" + Style.RESET_ALL + "\n")
     main_menu()
 
 if __name__ == "__main__":
