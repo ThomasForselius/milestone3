@@ -9,9 +9,11 @@ an original web project from Thomas Forselius, studying font-end webdevelopement
 
 > 1. [What is FriendControl?](#what-is-it)
  >- [User story](#user-story) 
-> 2. [UI & UX](#ux)
+> 2. [UX & UI](#ux)
 > 3. [Testing](#testing)
 > 4. [Deployment](#deployment)
+> 5. [Tech](#technologies)
+> 6. [Support](#support)
 
 # What is it?
 
@@ -29,3 +31,24 @@ When starting the game, the user is presented with a menu consisting of 6 menu i
 ![Layout](img/start.png)
 
 On each menu item the user is guided through simple steps and is prompted for input when applicable. 
+
+# UX and UI
+
+The program is written to be as clear to read as possible, with line breaks to separate information, colors to group certain objects such as inputs, the main menu and wrong input as well as styling the player and admin lists as tables.
+
+Inputs: Cyan
+Main menu: Green
+Player tables: white
+Wrong input: Red
+
+A key aspect of any user experience is the ease-of-use of a product or application. 
+People want quick and easy to use and navigate. Keep the intrest alive!
+
+
+# Testing
+
+# Deployment
+
+# Technologies
+
+# Support
