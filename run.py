@@ -77,12 +77,12 @@ def show_players(type):
     """
     Gets players or admins from sheet
     """
-    print(Fore.GREEN + f"\n*** Getting {type} from worksheet... ***\n" + "\033[39m")
+    print(Fore.GREEN + f"\n*** Getting {type} from worksheet... ***\n")
     data = SHEET.worksheet(type).get_all_values()[1:]
     i = 1
     players_num = count_players('players')
     if players_num < 1:
-        print(Fore.RED + "No players to display, add one first.\n\n \033[39m")
+        print(Fore.RED + "No players to display, add one first.\n\n")
         main_menu()
     player_list = []
     print(Fore.CYAN)
