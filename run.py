@@ -1,4 +1,5 @@
-
+from colorama import Fore, Back, Style, init
+init(autoreset=True)
 from tabulate import tabulate
 import gspread
 from google.oauth2.service_account import Credentials
@@ -32,19 +33,20 @@ def main_menu():
         6. Exit program
     """
     while True:
-        print(f"\t --- Main menu --- \n")
-        print(f"\t1: Create new Player")
-        print(f"\t2: Delete player")
-        print(f"\t3: Update Player Score")
-        print(f"\t4: Show Player list")
-        print(f"\t5: Show Admin List")
-        print(f"\t6: Exit program")
+        print(Fore.GREEN + f"\t --- Main menu --- \n")
+        print(Fore.GREEN + f"\t1: Create new Player")
+        print(Fore.GREEN + f"\t2: Delete player")
+        print(Fore.GREEN + f"\t3: Update Player Score")
+        print(Fore.GREEN + f"\t4: Show Player list")
+        print(Fore.GREEN + f"\t5: Show Admin List")
+        print(Fore.GREEN + f"\t6: Exit program")
         print("\n")
         menu_num = 0
         try:
             menu_num = int(input("Enter a number below: \n\n"))
+            print("\n")
         except ValueError:
-            print(f"* Error * incorrect value.")
+            print(Fore.RED + f"* Error * \nincorrect value.")
             print("Please enter a number from 1 - 6\n\n")
 
         if menu_num == 1:
@@ -60,7 +62,7 @@ def main_menu():
         elif menu_num == 6:
             exit()
         elif menu_num > 6:
-            print("\nNot a number between 1 and 6, try again.")
+            print(Fore.RED + "Not a number between 1 and 6, try again.\n")
 
 
 def count_players(type):
@@ -75,14 +77,15 @@ def show_players(type):
     """
     Gets players or admins from sheet
     """
-    print(f"\n*** Getting {type} from worksheet... ***\n")
+    print(Fore.GREEN + f"\n*** Getting {type} from worksheet... ***\n" + "\033[39m")
     data = SHEET.worksheet(type).get_all_values()[1:]
     i = 1
     players_num = count_players('players')
     if players_num < 1:
-        print("No players to display, add one first.\n\n")
-        return False
+        print(Fore.RED + "No players to display, add one first.\n\n \033[39m")
+        main_menu()
     player_list = []
+    print(Fore.CYAN)
     for x in data:
         name = [i,x[0],x[1]]
         player_list.append(name)
@@ -95,7 +98,7 @@ def show_players(type):
     else:
         print(tabulate(player_list, headers=["Num:","First Name","Last Name"], tablefmt="github"))
         print(f"\n")
-    #print(f"\n*** End of player list *** \n")
+    print(Fore.GREEN + f"*** End of player list *** \n")
 
 
 def update_score(type):
@@ -134,17 +137,19 @@ def update_score(type):
                         print("*** Points updated successfully! ***\n")
                         score_check = True
                     except ValueError:
-                        print("Mut be a number, try again ")
+                        print(Fore.RED + "Mut be a number, try again ")
                 break
         except ValueError:
-            print(f"Only numbers are allowed, try again.\n")
+            print(Fore.RED + f"Only numbers are allowed, try again.\n")
 
 
 def new_player():
     """
     Creates a new instance of regular player
     """
-    print(f"\n***** Create a player *****")
+    print(Back.CYAN + "\n***** Create a player *****")
+    print(Style.RESET_ALL)
+    print("\n")
     print(f"You must enter information about the player you wish to create.\n")
     print(f"These are the required credentials: \n")
     print(f"- Admin or Regular player")
@@ -154,25 +159,24 @@ def new_player():
     print(f"- Email\n")
     type = ""
     type_alt = ["admin", "player"]
-    type_list_admin = ["admins"]
-    type_list_player = ["players"]
     type_check = False
     while type_check is False:
-        type = input("* Admin or Player?\n")
+        print(Fore.CYAN + "* Admin or Player? *  \033[39m")
+        type = input()
         type_lower = str(type).lower()
         has = type_lower in type_alt
-        print(type_lower)
         if has:
             type_check = True
     f_name = ""
     f_name_check = False
     while f_name_check is False:
         try:
-            f_name = input("* First name: \n")
+            print(Fore.CYAN + "First name: \033[39m")
+            f_name = input()
             if len(f_name) > 2:
                 f_name_check = True
             else:
-                print("Name too short, try again.")
+                print(Fore.RED + "Name too short, try again.")
                 f_name_check = False
         except ValueError as e:
                 print(f"Something went wrong: {e}\n")
@@ -180,33 +184,36 @@ def new_player():
     l_name_check = False
     while l_name_check is False:
         try:
-            l_name = input("* Last name: \n")
+            print(Fore.CYAN + "* Last Name:")
+            l_name = input()
             if len(l_name) > 2:
                 l_name_check = True
             else:
-                print("Last name too short, try again")
+                print(Fore.RED + "Last name too short, try again.")
                 l_name_check = False
         except ValueError as e:
                 print(f"Something went wrong: {e}\n")
     age_check = False
     while age_check is False:
         try:
-            age = int(input("* Age: \n"))
+            print(Fore.CYAN + "* Age:")
+            age = int(input())
             age_check = True
         except ValueError:
-            print("Wrong value, try again")
+            print(Fore.RED + "Wrong value, try again.")
     email_check = False
     while email_check is False:
         try:
-            email = input("* Email: \n")
+            print(Fore.CYAN + "* Email:")
+            email = input()
             if "@" in email:
                 email_check = True
             else:
-                print("Email must contain @")
+                print(Fore.RED + "Email must contain @")
                 email_check = False
         except ValueError:
-            print(f"Incorrect email, try again.")
-            print("Email must contain @")
+            print(Fore.RED + f"Incorrect email, try again.")
+            print(Fore.RED + "Email must contain @")
     first_name = f_name.capitalize()
     last_name = l_name.capitalize()
     print("\n***** The following information was entered: *****")
@@ -218,7 +225,7 @@ def new_player():
     print(f"Email: {email}")
     print(f"\n")
     player_data = [first_name, last_name, age, email]
-    print("Adding player to list...\n")
+    print(Fore.GREEN + "Adding player to list...\n")
     if type_lower == "player":
         score_int = 0
         player_data.append(score_int)
@@ -247,14 +254,14 @@ def delete_player(type):
             if choice == 0:
                 main()
             elif choice < 1:
-                print("Negative numbers are not allowed. Try again")
+                print(Fore.RED + "Negative numbers are not allowed. Try again")
             elif choice > player_count:
-                print("Input is larger than number of players.\nTry again. ")
+                print(Fore.RED + "Input is larger than number of players.\nTry again. ")
                 del_player = False
             else:
                 del_player = True
         except ValueError:
-            print("Not a valid choice, try again")
+            print(Fore.RED + "Not a valid choice, try again")
 
     print(f"*** Deleting selected player... ***\n")
     choice += 1
@@ -263,7 +270,7 @@ def delete_player(type):
 
 
 def main():
-    print(f"\n\n*** Welcome to player database control center ***\n\n")
+    print(Back.BLUE + f"\n\n*** Welcome to player database control center ***\n" + Style.RESET_ALL + "\n")
     main_menu()
 
 if __name__ == "__main__":
