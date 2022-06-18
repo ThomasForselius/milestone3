@@ -1,8 +1,8 @@
-from colorama import Fore, Back, Style, init
-init(autoreset=True)
 from tabulate import tabulate
 import gspread
 from google.oauth2.service_account import Credentials
+from colorama import Fore, Back, Style, init
+init(autoreset=True)
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -87,16 +87,18 @@ def show_players(type):
     player_list = []
     print(Fore.CYAN)
     for x in data:
-        name = [i,x[0],x[1]]
+        name = [i, x[0], x[1]]
         player_list.append(name)
         if type == "players":
             name.append(x[4])
         i += 1
     if type == "players":
-        print(tabulate(player_list, headers=["Num:","First Name","Last Name","Score"],  tablefmt="github"))
+        headers = ["Num:", "First Name", "Last Name", "Score"]
+        print(tabulate(player_list, headers=headers,  tablefmt="github"))
         print(f"\n")
     else:
-        print(tabulate(player_list, headers=["Num:","First Name","Last Name"], tablefmt="github"))
+        headers_admin = ["Num:", "First Name", "Last Name"]
+        print(tabulate(player_list, headers=headers_admin, tablefmt="github"))
         print(f"\n")
     print(Fore.GREEN + f"*** End of player list *** \n")
 
@@ -253,13 +255,13 @@ def delete_player(type):
     print("* Note: To go back to main menu, enter 0 and press enter *\n")
     while del_player is False:
         try:
-            choice = int(input("Enter number for the player you wish to delete:\n"))
+            choice = int(input("Enter number for the player:\n"))
             if choice == 0:
                 main()
             elif choice < 1:
                 print(Fore.RED + "Negative numbers are not allowed. Try again")
             elif choice > player_count:
-                print(Fore.RED + "Input is larger than number of players.\nTry again. ")
+                print(Fore.RED + "Input larger than players.\nTry again. ")
                 del_player = False
             else:
                 del_player = True
@@ -274,7 +276,8 @@ def delete_player(type):
 
 def main():
     print("\n\n")
-    print(Back.CYAN + f"*** Welcome to FriendControl - database admin system ***" + Style.RESET_ALL + "\n\n")
+    title = f"*** Welcome to FriendControl - database admin system ***"
+    print(Back.CYAN + title + Style.RESET_ALL + "\n\n")
     main_menu()
 
 if __name__ == "__main__":
