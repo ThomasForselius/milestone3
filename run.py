@@ -167,6 +167,9 @@ def new_player():
         has = type_lower in type_alt
         if has:
             type_check = True
+        else:
+            print(Fore.RED + "Wrong, must be either 'admin' or 'player'")
+            type_check = False
     f_name = ""
     f_name_check = False
     while f_name_check is False:

@@ -63,6 +63,8 @@ There are different styles to choose from, so you can choose which suits your ne
 
 # Testing
 
+![Testing](img/test.png)
+
 The testing procedure in this application is done manually by entering different data in the input prompts.
 For every input where the application expects a certain type, length or string I have raised an exception in the code with a print()-statement to let the user know that they have entered incorrect code. 
 The make the incorrect input more clear it prints red text explaining what is required for the input to be considered correct.
