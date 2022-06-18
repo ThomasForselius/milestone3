@@ -94,10 +94,13 @@ Example of test:
     example: import gspread
     example: from colorama import Fore, Back, Style, init
 
-    also these must be added to the file: *requirements.txt* like this:
+>   Also these must be added to the file: *requirements.txt* like this:
+    first the library name, followed by == and then the library version
+
     tabulate==0.8.9
     colorama==0.4.4
 
+- Gspread
 # Technologies
 
 Lucidchart
