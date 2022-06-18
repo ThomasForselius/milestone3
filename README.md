@@ -162,6 +162,8 @@ Follow this tutorial form CodeInstitute on how to setup your API credentials:
 
 ## Checking Pep8 
 
+![Pep8](img/pep8.png)
+
 Using http://pep8online.com/ i check the code for flaws, and when it's done and fixed, I save the code and commit and push to GitHub. Then I proceed to deploy it on Heroku according to the steps below:
 
 ## Setting up Heroku project and connecting from GitHub
