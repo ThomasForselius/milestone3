@@ -11,8 +11,8 @@ an original web project from Thomas Forselius, studying font-end webdevelopement
  >- [User story](#user-story) 
 > 2. [UX & UI](#ux)
 > 3. [Testing](#testing)
-> 4. [Deployment](#deployment)
-> 5. [Tech](#technologies)
+> 4. [Tech](#technologies)
+> 5. [Deployment](#deployment)
 > 6. [Support](#support)
 
 # What is it?
