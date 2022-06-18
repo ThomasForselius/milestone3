@@ -78,7 +78,7 @@ Example of test:
 - Where the application prompts for a string value, the only restriction is the length of input which must be longer than 2 letters.
 - At the main menu, the user only has 6 alternatives, any input that is a string, more than the num 6 or less than the num 1 triggeres an exception with a red print()-statement
 
-*In my future projects I will be looking to use pytest for testing. Pytest is a python framework for automated testing of code with saves time for both me as an author and anybody whom may want to for the project and test themselves*
+*In my future projects I will be looking to use pytest for testing. Pytest is a python framework for automated testing of code which saves time for both me as an author and anybody whom may want to fork the project and test themselves*
 
 # Deployment
 
@@ -92,7 +92,10 @@ Example of test:
     gh repo clone ThomasForselius/milestone3
     *note: this requires github extension being installed in VSCode and user logged in to the extension*
 3. Now I write all code and add images locally. 
-4. When finished with a part of the code, I add, commit and push the changes to github
+4. When finished with a part of the code, I add, commit and push the changes to github via the source control tab
+
+![Github](img/github.png)
+
 
 - [VSCode](https://code.visualstudio.com/)
     The application was built using the IDE VS Code. It's a program for both Windows and MacOS that you run locally but can connect to your github account, built in terminal and live server. It's a perfect tool for writing code locally before pushing to github or uploading to the internet.
