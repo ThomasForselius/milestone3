@@ -182,3 +182,7 @@ Since I deploy my python code from GitHub to Heroku, I need to connect them with
 12. Now you can deploy your project directly to Heroku from GitHub
 
 # Support
+
+- Stackoverflow
+- Slack with fellow students in the CodeInstitute Course
+- Ronan McClelland, my mentor who is fantastic in supporting and guiding me in the right way
