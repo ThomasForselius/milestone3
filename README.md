@@ -54,12 +54,18 @@ Wrong input: Red
 A key aspect of any user experience is the ease-of-use of a product or application. 
 People want quick and easy to use and navigate. Keep the intrest alive!
 
-Another library that I implemented in this application is Tabular; which makes displaying data much more efficient visually. 
+![Tabular](img/tabular.png)
+
+Another library that I implemented in this application is Tabular; 
+which makes displaying data much more efficient visually. 
 There are different styles to choose from, so you can choose which suits your needs most. 
 
 
-
 # Testing
+
+The testing procedure in this application is done manually by entering different data in the input prompts.
+For every input where the application expects a certain type, length or string I have raised an exception in the code with a print()-statement to let the user know that they have entered incorrect code. 
+The make the incorrect input more clear it prints red text explaining what is required for the input to be considered correct.
 
 # Deployment
 
