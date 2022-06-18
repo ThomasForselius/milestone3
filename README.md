@@ -106,8 +106,6 @@ Example of test:
 
 - [Google Sheets](http://docs.google.com/spreadsheet)
 
-![Screenshot of Spreadsheet](img/ss_admin.png)
-
 - [Gspread](https://docs.gspread.org/en/latest/)
 
 Gspread is a library from Google to be able to read/write to google documents
@@ -140,11 +138,16 @@ An online platform for deploying backend applications and code
 
 The first step is to create a Google Sheet file to store all my data in. This is done by this process:
 
-    - Create a spreadsheet file in your Google Docs
-    - Now follow this tutorial form CodeInstitute on how to setup your API credentials: 
-    [Youtube Tutorial](https://www.youtube.com/watch?v=WTll5p4N7hE) 
+## Create a spreadsheet file in your Google Docs
+![Screenshot of Spreadsheet](img/ss_admin.png)
 
+## Setting up credentials
 
+Follow this tutorial form CodeInstitute on how to setup your API credentials: 
+
+[Youtube Tutorial](https://www.youtube.com/watch?v=WTll5p4N7hE) 
+
+## Setting up GitHub repository
 
 1. Go to my github account and create a new repository
 2. I clone that repository to my computer via VSCode using the following code in the terminal: 
@@ -152,6 +155,9 @@ The first step is to create a Google Sheet file to store all my data in. This is
     *note: this requires github extension being installed in VSCode and user logged in to the extension*
 3. Now I write all code and add images locally. 
 4. When finished with a part of the code, I add, commit and push the changes to github via the source control tab
+
+
+## Setting up Heroku project and connecting from GitHub
 
 Since I deploy my python code from GitHub to Heroku, I need to connect them with the following steps: 
 
