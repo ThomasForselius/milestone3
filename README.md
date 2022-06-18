@@ -85,6 +85,15 @@ Example of test:
 - [Lucidchart](https://www.lucidchart.com)
     For making mockup diagrams 
 
+- After making the  brainstorming diagram in Lucidchart, I do the following steps:
+
+1. Go to my github account and create a new repository
+2. I clone that repository to my computer via VSCode using the following code in the terminal: 
+    gh repo clone ThomasForselius/milestone3
+    *note: this requires github extension being installed in VSCode and user logged in to the extension*
+3. Now I write all code and add images locally. 
+4. When finished with a part of the code, I add, commit and push the changes to github
+
 - [VSCode](https://code.visualstudio.com/)
     The application was built using the IDE VS Code. It's a program for both Windows and MacOS that you run locally but can connect to your github account, built in terminal and live server. It's a perfect tool for writing code locally before pushing to github or uploading to the internet.
 
@@ -100,7 +109,9 @@ Example of test:
     tabulate==0.8.9
     colorama==0.4.4
 
-- Gspread
+- [Gspread](https://docs.gspread.org/en/latest/)
+
+
 # Technologies
 
 Lucidchart
