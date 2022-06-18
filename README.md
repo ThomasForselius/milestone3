@@ -66,8 +66,19 @@ There are different styles to choose from, so you can choose which suits your ne
 ![Testing](img/test.png)
 
 The testing procedure in this application is done manually by entering different data in the input prompts.
+
 For every input where the application expects a certain type, length or string I have raised an exception in the code with a print()-statement to let the user know that they have entered incorrect code. 
 The make the incorrect input more clear it prints red text explaining what is required for the input to be considered correct.
+Once again, the ease-of-use for the user is vital to keep the application easy and interesting
+
+Example of test: 
+
+- Where the application prompts for a number (i.e. menu items or player numbers from a list) I enter letters and/or special characters
+    There should be a red print()-statement declaring wrong input, and the user is prompoted again until the correct value is entered
+- Where the application prompts for a string value, the only restriction is the length of input which must be longer than 2 letters.
+- At the main menu, the user only has 6 alternatives, any input that is a string, more than the num 6 or less than the num 1 triggeres an exception with a red print()-statement
+
+*In my future projects I will be looking to use pytest for testing. Pytest is a python framework for automated testing of code with saves time for both me as an author and anybody whom may want to for the project and test themselves*
 
 # Deployment
 
