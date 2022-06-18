@@ -82,6 +82,10 @@ Example of test:
 
 # Technologies
 
+- Python is the language used for this project
+
+- [Pep8](http://pep8online.com/)
+    An online code checker for python code
 
 - [Lucidchart](https://www.lucidchart.com)
     For making mockup diagrams 
@@ -156,6 +160,9 @@ Follow this tutorial form CodeInstitute on how to setup your API credentials:
 3. Now I write all code and add images locally. 
 4. When finished with a part of the code, I add, commit and push the changes to github via the source control tab
 
+## Checking Pep8 
+
+Using http://pep8online.com/ i check the code for flaws, and when it's done and fixed, I save the code and commit and push to GitHub. Then I proceed to deploy it on Heroku according to the steps below:
 
 ## Setting up Heroku project and connecting from GitHub
 
