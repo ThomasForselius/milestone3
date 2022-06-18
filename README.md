@@ -82,6 +82,22 @@ Example of test:
 
 # Deployment
 
+- [Lucidchart](https://www.lucidchart.com)
+    For making mockup diagrams 
+
+- [VSCode](https://code.visualstudio.com/)
+    The application was built using the IDE VS Code. It's a program for both Windows and MacOS that you run locally but can connect to your github account, built in terminal and live server. It's a perfect tool for writing code locally before pushing to github or uploading to the internet.
+
+> To install libraries in VSCode I use the command 'pip install *library name* ' -  this downloads the library to my computer.
+    To be able to use libraries in my deployed project I need to add them to the top of the run.py file like this: 
+
+    example: import gspread
+    example: from colorama import Fore, Back, Style, init
+
+    also these must be added to the file: *requirements.txt* like this:
+    tabulate==0.8.9
+    colorama==0.4.4
+
 # Technologies
 
 Lucidchart
@@ -91,7 +107,7 @@ VSCode
     colorama + docu
     tabular + docu
 GitHub
-Google Sheets Doc + API
+Google Sheets Doc + API + google Auth
 Heroku
 
 # Support
