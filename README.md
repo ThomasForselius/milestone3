@@ -54,9 +54,9 @@ Wrong input: Red
 A key aspect of any user experience is the ease-of-use of a product or application. 
 People want quick and easy to use and navigate. Keep the intrest alive!
 
-![Tabular](img/tabular.png)
+![Tabulate](img/tabular.png)
 
-Another library that I implemented in this application is Tabular; 
+Another library that I implemented in this application is Tabulate; 
 which makes displaying data much more efficient visually. 
 There are different styles to choose from, so you can choose which suits your needs most. 
 
@@ -80,19 +80,11 @@ Example of test:
 
 *In my future projects I will be looking to use pytest for testing. Pytest is a python framework for automated testing of code which saves time for both me as an author and anybody whom may want to fork the project and test themselves*
 
-# Deployment
+# Technologies
+
 
 - [Lucidchart](https://www.lucidchart.com)
     For making mockup diagrams 
-
-- After making the  brainstorming diagram in Lucidchart, I do the following steps:
-
-1. Go to my github account and create a new repository
-2. I clone that repository to my computer via VSCode using the following code in the terminal: 
-    gh repo clone ThomasForselius/milestone3
-    *note: this requires github extension being installed in VSCode and user logged in to the extension*
-3. Now I write all code and add images locally. 
-4. When finished with a part of the code, I add, commit and push the changes to github via the source control tab
 
 ![Github](img/github.png)
 
@@ -112,19 +104,68 @@ Example of test:
     tabulate==0.8.9
     colorama==0.4.4
 
+- [Google Sheets](http://docs.google.com/spreadsheet)
+
+![Screenshot of Spreadsheet](img/ss_admin.png)
+
 - [Gspread](https://docs.gspread.org/en/latest/)
 
+Gspread is a library from Google to be able to read/write to google documents
 
-# Technologies
+- [Google oauth 2.0](https://developers.google.com/identity/protocols/oauth2)
 
-Lucidchart
-VSCode
-    pip install
-    gspread
-    colorama + docu
-    tabular + docu
-GitHub
-Google Sheets Doc + API + google Auth
-Heroku
+OAuth 2.0 is used to authenticate towards Google API's
+
+- [Colorama](https://pypi.org/project/colorama/)
+
+Colorama is a library that lets you simply add color to your terminal application
+
+- [Tabulate](https://pypi.org/project/tabulate/)
+
+Lets you style your displayment of data to tables of different styles. 
+This a very simple and pwerful way to make the readability of your code better
+
+- [GitHub](https://www.github.com)
+
+An online platform where people upload and contribute code they have written. 
+
+- [Heroku](https://www.heroku.com)
+
+An online platform for deploying backend applications and code
+
+
+# Deployment
+
+- After making the brainstorming diagram in Lucidchart, I do the following steps:
+
+The first step is to create a Google Sheet file to store all my data in. This is done by this process:
+
+    - Create a spreadsheet file in your Google Docs
+    - Now follow this tutorial form CodeInstitute on how to setup your API credentials: 
+    [Youtube Tutorial](https://www.youtube.com/watch?v=WTll5p4N7hE) 
+
+
+
+1. Go to my github account and create a new repository
+2. I clone that repository to my computer via VSCode using the following code in the terminal: 
+    gh repo clone ThomasForselius/milestone3
+    *note: this requires github extension being installed in VSCode and user logged in to the extension*
+3. Now I write all code and add images locally. 
+4. When finished with a part of the code, I add, commit and push the changes to github via the source control tab
+
+Since I deploy my python code from GitHub to Heroku, I need to connect them with the following steps: 
+
+1. Register account on Heroku and then login
+2. In the upper right hand corner, add a New App
+3. Choose App name and region
+4. Navigate to Settings tab
+5. Under Config Vars, click Reveal Config Vars
+6. In the KEY input write CREDS
+7. In the VALUE textbox, enter the credentials from your CREDS.json file
+8. Under Buildpacks - add first(!) python and then(!) node.js 
+9. Navigate to Deploy section and choose GitHub as deployment method
+10. Login to your github account, and then choose a repo to deploy to Heroku
+11. When you have found your repo, click Connect
+12. Now you can deploy your project directly to Heroku from GitHub
 
 # Support
