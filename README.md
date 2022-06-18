@@ -151,6 +151,10 @@ Follow this tutorial form CodeInstitute on how to setup your API credentials:
 
 [Youtube Tutorial](https://www.youtube.com/watch?v=WTll5p4N7hE) 
 
+Now you must add the code to the run.py to be able to connect to the spreadsheet
+
+![Credentials](img/scope.png)
+
 ## Setting up GitHub repository
 
 1. Go to my github account and create a new repository
@@ -177,11 +181,12 @@ Since I deploy my python code from GitHub to Heroku, I need to connect them with
 5. Under Config Vars, click Reveal Config Vars
 6. In the KEY input write CREDS
 7. In the VALUE textbox, enter the credentials from your CREDS.json file
-8. Under Buildpacks - add first(!) python and then(!) node.js 
-9. Navigate to Deploy section and choose GitHub as deployment method
-10. Login to your github account, and then choose a repo to deploy to Heroku
-11. When you have found your repo, click Connect
-12. Now you can deploy your project directly to Heroku from GitHub
+8. The second config variable you need is to enter key: PORT and value: 8000, then press 'add'
+9. Under Buildpacks - add first(!) python and then(!) node.js 
+10. Navigate to Deploy section and choose GitHub as deployment method
+11. Login to your github account, and then choose a repo to deploy to Heroku
+12. When you have found your repo, click Connect
+13. Now you can deploy your project directly to Heroku from GitHub
 
 # Support
 
