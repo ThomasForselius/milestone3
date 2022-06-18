@@ -5,6 +5,9 @@
 This is the README.md descriptive file of the project FriendControl;
 an original web project from Thomas Forselius, studying font-end webdevelopement at CodeInstitute. 
 
+![Responsive Mockup](img/responsive.png)
+
+
 # Table of Contents
 
 > 1. [What is FriendControl?](#what-is-it)
