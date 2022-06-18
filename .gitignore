@@ -8,5 +8,3 @@ node_modules/
 .github/
 creds.json
 funcs.py
-tkinter.py
-test_sample1.py
